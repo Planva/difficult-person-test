@@ -122,29 +122,49 @@ function App() {
 
   const handleShare = async () => {
     if (!scores) return;
-
+  
     try {
+      // 生成图片
       const image = await generateShareImage(scores, traits, language, chartRef.current);
       if (!image) {
         toast.error(t.ui.imageError);
         return;
       }
-
-      const blob = await (await fetch(image)).blob();
+  
+      // 确保 image 是 Data URL
+      if (!image.startsWith('data:image/')) {
+        console.error('Generated image is not a Data URL:', image);
+        toast.error(t.ui.imageError);
+        return;
+      }
+  
+      // 直接将 Data URL 转换为 Blob
+      const base64String = image.split(',')[1]; // 提取 Base64 部分
+      const byteCharacters = atob(base64String);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], { type: 'image/png' });
       const file = new File([blob], 'personality-test-results.png', { type: 'image/png' });
-
+  
+      // 尝试使用 Web Share API 分享
       if (navigator.share && navigator.canShare({ files: [file] })) {
         await navigator.share({
           files: [file],
           title: t.ui.title,
-          text: generateShareableText()
+          text: generateShareableText(),
         });
         toast.success(t.ui.shared);
       } else {
+        // 否则触发下载
+        const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
-        link.href = image;
+        link.href = url;
         link.download = 'personality-test-results.png';
         link.click();
+        URL.revokeObjectURL(url);
         toast.success(t.ui.downloaded);
       }
     } catch (err) {

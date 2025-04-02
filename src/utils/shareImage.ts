@@ -121,7 +121,7 @@ export const generateShareImage = async (
   website.style.fontSize = '20px';
   website.style.color = '#64748b';
   website.style.marginBottom = '16px';
-  website.textContent = 'www.difficult-person-test.com';
+  website.textContent = 'https://www.difficult-person-test.com';
   footer.appendChild(website);
 
   try {
