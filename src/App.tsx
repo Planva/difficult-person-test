@@ -150,36 +150,23 @@ function App() {
       const file = new File([blob], 'personality-test-results.png', { type: 'image/png' });
   
       // 尝试使用 Web Share API 分享
-      if (navigator.share) {
-        // 更严格的检查
-        const canShareFiles = navigator.canShare && navigator.canShare({ files: [file] });
-        if (canShareFiles) {
-          try {
-            await navigator.share({
-              files: [file],
-              title: t.ui.title,
-              text: generateShareableText(),
-            });
-            toast.success(t.ui.shared);
-            return; // 成功分享后直接返回
-          } catch (err) {
-            if (err.name === 'AbortError') {
-              // 用户取消分享，不显示错误
-              return;
-            }
-            throw err; // 其他错误继续抛出
-          }
-        }
+      if (navigator.share && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          files: [file],
+          title: t.ui.title,
+          text: generateShareableText(),
+        });
+        toast.success(t.ui.shared);
+      } else {
+        // 否则触发下载
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'personality-test-results.png';
+        link.click();
+        URL.revokeObjectURL(url);
+        toast.success(t.ui.downloaded);
       }
-  
-      // 如果不支持分享文件，则触发下载
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = 'personality-test-results.png';
-      link.click();
-      URL.revokeObjectURL(url);
-      toast.success(t.ui.downloaded);
     } catch (err) {
       console.error('Error sharing:', err);
       toast.error(t.ui.shareError);
