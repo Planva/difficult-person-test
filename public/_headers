@@ -2,5 +2,5 @@
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: document-domain=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob:; font-src 'self' data:; connect-src 'self' *.cloudflareinsights.com https://*; worker-src 'self' blob:; frame-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self';
+  Permissions-Policy: geolocation=(), camera=()
+  Content-Security-Policy: default-src 'self' *.cloudflareinsights.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' *.cloudflareinsights.com;
