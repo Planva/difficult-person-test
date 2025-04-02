@@ -412,7 +412,6 @@ function App() {
           <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
       </div>
-      <Footer />
     </div>
   );
 
@@ -526,8 +525,9 @@ function App() {
           )}
         </div>
       </div>
-      <Footer />
+      
     </div>
+    <Footer />
   );
 }
 
