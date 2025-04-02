@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { AlertTriangle, BookOpen, Brain, ChevronRight, FileText, Share2 } from 'lucide-react';
 import { questions, traits, TraitType } from './data/questions';
 import { traitDescriptions } from './data/traitDescriptions';
@@ -388,6 +389,28 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
+      <Helmet>
+        <title>Difficult Person Test - Free Personality Assessment Based on Research</title>
+        <meta name="description" content="Take the free Difficult Person Test to discover your personality traits. Based on scientific research, this test measures 7 key characteristics that influence relationships." />
+        <meta name="keywords" content="difficult person test, personality test, relationship assessment, personality traits, psychological test" />
+        
+        <meta property="og:title" content="Difficult Person Test - Free Personality Assessment" />
+        <meta property="og:description" content="Discover your personality traits with this research-based assessment tool" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.difficult-person-test.com" />
+        <meta property="og:image" content="https://www.difficult-person-test.com/og-image.jpg" />
+        
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Difficult Person Test - Free Personality Assessment" />
+        <meta name="twitter:description" content="Discover your personality traits with this research-based assessment tool" />
+        <meta name="twitter:image" content="https://www.difficult-person-test.com/og-image.jpg" />
+        
+        <link rel="canonical" href="https://www.difficult-person-test.com" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="Difficult Person Test" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Helmet>
+
       <Navigation />
       <div className="flex-grow py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
         <Toaster position="top-center" />
