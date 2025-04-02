@@ -416,119 +416,96 @@ function App() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col">
-      <Helmet>
-        <title>Difficult Person Test - Free Personality Assessment Based on Research</title>
-        <meta name="description" content="Take the free Difficult Person Test to discover your personality traits. Based on scientific research, this test measures 7 key characteristics that influence relationships." />
-        <meta name="keywords" content="difficult person test, personality test, relationship assessment, personality traits, psychological test" />
-        
-        <meta property="og:title" content="Difficult Person Test - Free Personality Assessment" />
-        <meta property="og:description" content="Discover your personality traits with this research-based assessment tool" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.difficult-person-test.com" />
-        <meta property="og:image" content="https://www.difficult-person-test.com/og-image.jpg" />
-        
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Difficult Person Test - Free Personality Assessment" />
-        <meta name="twitter:description" content="Discover your personality traits with this research-based assessment tool" />
-        <meta name="twitter:image" content="https://www.difficult-person-test.com/og-image.jpg" />
-        
-        <link rel="canonical" href="https://www.difficult-person-test.com" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="Difficult Person Test" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </Helmet>
-
-      <Navigation />
-      <div className="flex-grow py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
-        <Toaster position="top-center" />
-        <LanguageSelector currentLanguage={language} onLanguageChange={setLanguage} />
-        
-        {showResumeModal && (
-          <ResumeModal
-            language={language}
-            onResume={handleResume}
-            onStartNew={handleStartNew}
-            onClose={() => setShowResumeModal(false)}
-          />
-        )}
-
-        <div className="max-w-3xl mx-auto">
-          {!showTest ? (
-            renderLandingPage()
-          ) : (
-            <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 md:p-8">
-              <div className="text-center mb-6 sm:mb-8">
-                <h1 className="text-xl sm:text-3xl font-bold text-gray-900">
-                  {t.ui.title}
-                </h1>
-                <p className="mt-2 text-sm sm:text-base text-gray-600">
-                  {t.ui.subtitle}
-                </p>
-              </div>
-
-              {!scores ? (
-                <>
-                  <div className="space-y-4 sm:space-y-6">
-                    {currentQuestions.map((question) => (
-                      <div key={question.id} className="bg-gray-50 p-3 sm:p-4 rounded-lg">
-                        <p className="font-medium text-gray-900 text-sm sm:text-base">
-                          {question.id}. {question.text[language]}
-                        </p>
-                        {renderLikertScale(question.id)}
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="mt-6 sm:mt-8 flex justify-between">
-                    <button
-                      onClick={() => setCurrentPage(prev => Math.max(0, prev - 1))}
-                      disabled={currentPage === 0}
-                      className="px-3 py-2 sm:px-4 sm:py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 disabled:opacity-50 text-sm sm:text-base"
-                    >
-                      {t.ui.previous}
-                    </button>
-                    
-                    {currentPage === totalPages - 1 ? (
-                      <button
-                        onClick={calculateScores}
-                        disabled={!isComplete}
-                        className="px-3 py-2 sm:px-4 sm:py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 text-sm sm:text-base"
-                      >
-                        {t.ui.viewResults}
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => setCurrentPage(prev => Math.min(totalPages - 1, prev + 1))}
-                        className="px-3 py-2 sm:px-4 sm:py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-sm sm:text-base"
-                      >
-                        {t.ui.next}
-                      </button>
-                    )}
-                  </div>
-
-                  {!isComplete && (
-                    <div className="mt-4 flex items-center justify-center text-amber-600 gap-2 text-sm sm:text-base">
-                      <AlertTriangle size={16} className="sm:w-5 sm:h-5" />
-                      <span>{t.ui.pleaseAnswer}</span>
-                    </div>
-                  )}
-
-                  <div className="mt-4 text-center text-gray-500 text-sm sm:text-base">
-                    {t.ui.page} {currentPage + 1} {t.ui.of} {totalPages}
-                  </div>
-                </>
-              ) : (
-                renderResults()
-              )}
-            </div>
+     <div className="min-h-screen bg-gray-100 flex flex-col">
+        <Navigation />
+        <div className="flex-grow py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
+          <Toaster position="top-center" />
+          <LanguageSelector currentLanguage={language} onLanguageChange={setLanguage} />
+          
+          {showResumeModal && (
+            <ResumeModal
+              language={language}
+              onResume={handleResume}
+              onStartNew={handleStartNew}
+              onClose={() => setShowResumeModal(false)}
+            />
           )}
+    
+          <div className="max-w-3xl mx-auto">
+            {!showTest ? (
+              renderLandingPage()
+            ) : (
+              <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 md:p-8">
+                <div className="text-center mb-6 sm:mb-8">
+                  <h1 className="text-xl sm:text-3xl font-bold text-gray-900">
+                    {t.ui.title}
+                  </h1>
+                  <p className="mt-2 text-sm sm:text-base text-gray-600">
+                    {t.ui.subtitle}
+                  </p>
+                </div>
+    
+                {!scores ? (
+                  <>
+                    <div className="space-y-4 sm:space-y-6">
+                      {currentQuestions.map((question) => (
+                        <div key={question.id} className="bg-gray-50 p-3 sm:p-4 rounded-lg">
+                          <p className="font-medium text-gray-900 text-sm sm:text-base">
+                            {question.id}. {question.text[language]}
+                          </p>
+                          {renderLikertScale(question.id)}
+                        </div>
+                      ))}
+                    </div>
+    
+                    <div className="mt-6 sm:mt-8 flex justify-between">
+                      <button
+                        onClick={() => setCurrentPage(prev => Math.max(0, prev - 1))}
+                        disabled={currentPage === 0}
+                        className="px-3 py-2 sm:px-4 sm:py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 disabled:opacity-50 text-sm sm:text-base"
+                      >
+                        {t.ui.previous}
+                      </button>
+                      
+                      {currentPage === totalPages - 1 ? (
+                        <button
+                          onClick={calculateScores}
+                          disabled={!isComplete}
+                          className="px-3 py-2 sm:px-4 sm:py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 text-sm sm:text-base"
+                        >
+                          {t.ui.viewResults}
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => setCurrentPage(prev => Math.min(totalPages - 1, prev + 1))}
+                          className="px-3 py-2 sm:px-4 sm:py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-sm sm:text-base"
+                        >
+                          {t.ui.next}
+                        </button>
+                      )}
+                    </div>
+    
+                    {!isComplete && (
+                      <div className="mt-4 flex items-center justify-center text-amber-600 gap-2 text-sm sm:text-base">
+                        <AlertTriangle size={16} className="sm:w-5 sm:h-5" />
+                        <span>{t.ui.pleaseAnswer}</span>
+                      </div>
+                    )}
+    
+                    <div className="mt-4 text-center text-gray-500 text-sm sm:text-base">
+                      {t.ui.page} {currentPage + 1} {t.ui.of} {totalPages}
+                    </div>
+                  </>
+                ) : (
+                  renderResults()
+                )}
+              </div>
+            )}
+          </div>
         </div>
+        <Footer />
       </div>
-      
-    </div>
-    <Footer />
-  );
+    );
 }
 
 export default App;
