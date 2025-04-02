@@ -525,9 +525,9 @@ function App() {
           )}
         </div>
       </div>
-      <Footer />
     </div>
   );
+  <Footer />
 }
 
 export default App;

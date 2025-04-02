@@ -3,7 +3,6 @@ import { Navigation } from '../components/Navigation';
 import { Brain, ArrowRight, FileText, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { Footer } from '../components/Footer';
 export function TestResults() {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -180,7 +179,6 @@ export function TestResults() {
           </Link>
         </div>
       </main>
-      <Footer/>
     </div>
   );
 }
