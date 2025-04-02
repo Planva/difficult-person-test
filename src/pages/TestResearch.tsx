@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navigation } from '../components/Navigation';
 import { BookOpen, FileText, Users, Brain } from 'lucide-react';
+import { Footer } from '../components/Footer';
 
 export function TestResearch() {
   return (
@@ -116,6 +117,7 @@ export function TestResearch() {
           </div>
         </div>
       </main>
+      <Footer/>
     </div>
   );
 }
