@@ -15,7 +15,7 @@ export function Footer() {
     {
       name: "Thumbnail Tester",
       url: "https://www.thumbnail-tester.com"
-    }
+    },
     {
       name: "Calculator App",
       url: "https://www.calculator-app.org"
