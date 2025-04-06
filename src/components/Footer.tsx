@@ -10,8 +10,12 @@ export function Footer() {
     },
     {
       name: "Sending Prayers",
-      url: "https://www.sending-prayers.com/"
+      url: "https://www.sending-prayers.com"
     },
+    {
+      name: "Thumbnail Tester",
+      url: "https://www.thumbnail-tester.com"
+    }
     {
       name: "Calculator App",
       url: "https://www.calculator-app.org"
