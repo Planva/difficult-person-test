@@ -17,6 +17,10 @@ export function Footer() {
       url: "https://www.thumbnail-tester.com"
     },
     {
+      name: "Smart IQ Test",
+      url: "https://www.smarttest.cc/"
+    },
+    {
       name: "Calculator App",
       url: "https://www.calculator-app.org"
     }
