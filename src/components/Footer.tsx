@@ -23,6 +23,10 @@ export function Footer() {
     {
       name: "Calculator App",
       url: "https://www.calculator-app.org"
+    },
+    {
+      name: "Future Value Calculatorp",
+      url: "https://www.future-value-calculator.com/"
     }
   ];
 
